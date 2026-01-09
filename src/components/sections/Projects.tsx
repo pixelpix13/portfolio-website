@@ -34,10 +34,11 @@ export function Projects() {
           {projects.map((project, index) => (
             <div 
               key={index} 
-              className="group relative overflow-hidden rounded-2xl border bg-card hover:shadow-2xl hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-500 animate-float"
+              className="group relative overflow-hidden rounded-2xl border bg-card hover:shadow-2xl hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-500 animate-float flex flex-col"
               style={{
                 animation: `slideInUp 0.6s ease-out ${index * 0.15}s forwards, float 6s ease-in-out ${index * 0.5}s infinite`,
-                opacity: 0
+                opacity: 0,
+                minHeight: '600px'
               }}
             >
               {/* Project Image/Placeholder */}
@@ -60,31 +61,57 @@ export function Projects() {
               {/* Project Info */}
               <div className="p-4 sm:p-5 md:p-6 flex flex-col h-full">
                 <h3 className="text-lg sm:text-xl font-bold mb-2">{project.name}</h3>
-                <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 line-clamp-3">
+                <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
                   {project.description}
                 </p>
 
                 <div className="space-y-3 flex-grow flex flex-col">
                   <div className="flex-grow">
                     <p className="text-xs font-semibold text-foreground mb-2">Key Features:</p>
-                    <ul className="space-y-1">
-                      {project.highlights.slice(0, 2).map((highlight, i) => (
-                        <li key={i} className="text-xs text-muted-foreground line-clamp-1">
+                    <ul className="space-y-1.5">
+                      {project.highlights.map((highlight, i) => (
+                        <li key={i} className="text-xs text-muted-foreground leading-relaxed">
                           • {highlight}
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full mt-auto">
-                    <Button 
-                      size="sm" 
-                      className="w-full group bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 hover:from-cyan-500 hover:via-teal-500 hover:to-emerald-500 text-white border-none shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-                    >
-                      <Github className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                      View on GitHub
-                    </Button>
-                  </a>
+                  <div className="mt-auto space-y-2">
+                    {('frontendLink' in project) && (
+                      <div className="flex gap-2">
+                        <a href={project.frontendLink} target="_blank" rel="noopener noreferrer" className="flex-1">
+                          <Button 
+                            size="sm" 
+                            className="w-full group bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white border-none shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                          >
+                            <Github className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                            Frontend
+                          </Button>
+                        </a>
+                        <div className="flex-1">
+                          <Button 
+                            size="sm" 
+                            disabled
+                            className="w-full bg-muted text-muted-foreground cursor-not-allowed"
+                          >
+                            Backend (Private)
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                    {!('frontendLink' in project) && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full">
+                        <Button 
+                          size="sm" 
+                          className="w-full group bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 hover:from-cyan-500 hover:via-teal-500 hover:to-emerald-500 text-white border-none shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                        >
+                          <Github className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                          View on GitHub
+                        </Button>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
