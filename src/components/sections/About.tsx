@@ -17,7 +17,7 @@ export function About() {
               <div className="aspect-[4/3] rounded-2xl overflow-hidden border-4 border-transparent bg-gradient-to-br from-cyan-500 via-teal-500 to-emerald-500 p-1 shadow-2xl shadow-cyan-500/30 hover:shadow-cyan-500/50 transition-shadow duration-300">
                 <div className="w-full h-full rounded-xl overflow-hidden bg-background">
                   <img 
-                    src="/images/about.jpg" 
+                    src="./images/about.jpg" 
                     alt={personal.name}
                     className="w-full h-full object-cover"
                   />

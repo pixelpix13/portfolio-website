@@ -96,7 +96,7 @@ export function Hero() {
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-transparent bg-gradient-to-br from-cyan-500 via-teal-500 to-emerald-500 p-1 shadow-2xl shadow-cyan-500/50 animate-glow">
                 <div className="w-full h-full rounded-full overflow-hidden bg-background">
                   <img 
-                    src="/images/profile.jpg" 
+                    src="./images/profile.jpg" 
                     alt={personal.name}
                     className="w-full h-full object-cover"
                   />
