@@ -80,15 +80,6 @@ export function Projects() {
                   <div className="mt-auto space-y-2">
                     {('frontendLink' in project) && (
                       <div className="flex gap-2">
-                        <a href={project.frontendLink} target="_blank" rel="noopener noreferrer" className="flex-1">
-                          <Button 
-                            size="sm" 
-                            className="w-full group bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white border-none shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-                          >
-                            <Github className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                            Frontend
-                          </Button>
-                        </a>
                         <div className="flex-1">
                           <Button 
                             size="sm" 
