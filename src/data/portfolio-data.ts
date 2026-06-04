@@ -61,10 +61,9 @@ export const portfolioData = {
   projects: [
     {
       name: "StockDaddy - Inventory Management System",
-      description: "Modular .NET 9 backend system architected using Clean Architecture principles for inventory and operations management. Frontend is public, backend is private and work in progress.",
+      description: "Modular .NET 9 full-stack application architected using Clean Architecture principles for inventory and operations management. Frontend and backend are in the same repository.",
       technologies: ["React", "ASP.NET Core", "PostgreSQL", "TypeScript", ".NET 9", "EF Core", "Clean Architecture", "xUnit", "Moq"],
       link: "https://github.com/pixelpix13/StockDaddy",
-      backendStatus: "Private - Work in Progress",
       highlights: [
         "Architected modular backend using Clean Architecture for independent evolution of domain logic and infrastructure",
         "Implemented multi-tenant inventory system with tenant isolation and role-based access",
