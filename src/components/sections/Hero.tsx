@@ -1,109 +1,193 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import { Magnetic, Parallax } from '@/components/motion/primitives';
 import { portfolioData } from '@/data/portfolio-data';
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
+function HeadlineLine({
+  children,
+  delay,
+  className = '',
+}: {
+  children: React.ReactNode;
+  delay: number;
+  className?: string;
+}) {
+  return (
+    <span className="block overflow-hidden">
+      <motion.span
+        className={`block ${className}`}
+        initial={{ y: '110%' }}
+        animate={{ y: 0 }}
+        transition={{ duration: 1, delay, ease }}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+}
 
 export function Hero() {
   const { personal } = portfolioData;
 
+  const stagger = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.11, delayChildren: 1.0 } },
+  };
+  const fadeUp = {
+    hidden: { opacity: 0, y: 22 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.65, ease } },
+  };
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 bg-gradient-to-br from-background via-background to-muted/20">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center px-6 md:px-8 py-20 md:py-24"
+    >
       <div className="max-w-7xl mx-auto w-full">
-        <div className="grid md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
-          {/* Left side - Text content */}
-          <div className="space-y-6 order-2 md:order-1">
-            <div className="space-y-2">
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground">Hey I'm {personal.name.split(' ')[0]}</p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold">
-                <span className="bg-gradient-to-r from-cyan-600 to-teal-600 bg-clip-text text-transparent">Software</span>
-                <br />
-                <span className="bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">Developer</span>
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+
+          {/* Left — text */}
+          <motion.div
+            className="space-y-7 order-2 md:order-1"
+            variants={stagger}
+            initial="hidden"
+            animate="show"
+          >
+            {/* Eyebrow */}
+            <motion.div
+              className="flex items-center gap-3"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.15, ease }}
+            >
+              <span className="h-[1.5px] w-6 bg-primary block" />
+              <span className="text-xs uppercase tracking-[0.2em] text-primary font-semibold">
+                Available for work
+              </span>
+            </motion.div>
+
+            {/* Headline */}
+            <div>
+              <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tight">
+                <HeadlineLine delay={0.25} className="text-foreground">
+                  Software
+                </HeadlineLine>
+                <HeadlineLine delay={0.4} className="text-foreground">
+                  Developer
+                </HeadlineLine>
+                <HeadlineLine delay={0.55} className="text-primary">
+                  &amp; Engineer
+                </HeadlineLine>
               </h1>
             </div>
 
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl">
-              Passionate about leveraging technology to build impactful solutions. With a focus on .NET, 
-              ASP.NET Core, and Cloud technologies, I'm dedicated to exploring new possibilities and 
-              creating innovative applications. Let's work together to bring exciting ideas to life.
-            </p>
+            {/* Bio */}
+            <motion.p
+              variants={fadeUp}
+              className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md"
+            >
+              Passionate about leveraging technology to build impactful solutions.
+              Focused on .NET, ASP.NET Core, and Cloud — creating scalable, secure,
+              and high-performance applications.
+            </motion.p>
 
-            {/* Certification Badge */}
-            <div className="py-2 sm:py-4">
-              <a 
-                href="https://www.credly.com/badges/532bd91b-3c71-4d26-8592-4796829c3b93/public_url"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block hover:scale-105 transition-transform duration-300"
-              >
-                <img 
-                  src="https://images.credly.com/size/340x340/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png" 
-                  alt="AWS Certified Solutions Architect - Associate"
-                  className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-                />
-              </a>
-            </div>
+            {/* AWS Badge */}
+            <motion.div variants={fadeUp}>
+              <Magnetic strength={0.3}>
+                <a
+                  href="https://www.credly.com/badges/532bd91b-3c71-4d26-8592-4796829c3b93/public_url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block"
+                >
+                  <div className="flex items-center gap-3 rounded-full border border-border/70 bg-card px-4 py-2 hover:border-primary/50 transition-colors duration-300">
+                    <img
+                      src="https://images.credly.com/size/340x340/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png"
+                      alt="AWS SAA"
+                      className="h-9 w-9 rounded-full"
+                    />
+                    <div>
+                      <p className="text-xs font-semibold text-foreground leading-tight">AWS Certified</p>
+                      <p className="text-[10px] text-muted-foreground">Solutions Architect – Associate</p>
+                    </div>
+                  </div>
+                </a>
+              </Magnetic>
+            </motion.div>
 
-            {/* Social Links */}
-            <div className="flex items-center gap-3 sm:gap-4">
-              <a
-                href={personal.links.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-cyan-500 transition-colors"
-              >
-                <Linkedin className="w-6 h-6 sm:w-7 sm:h-7" />
-              </a>
-              <a
-                href={personal.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-cyan-500 transition-colors"
-              >
-                <Github className="w-6 h-6 sm:w-7 sm:h-7" />
-              </a>
-              <a
-                href={`mailto:${personal.email}`}
-                className="text-foreground hover:text-cyan-500 transition-colors"
-              >
-                <Mail className="w-6 h-6 sm:w-7 sm:h-7" />
-              </a>
-            </div>
+            {/* Social icons */}
+            <motion.div variants={fadeUp} className="flex items-center gap-4">
+              {[
+                { href: personal.links.linkedin, Icon: Linkedin, label: 'LinkedIn', external: true },
+                { href: personal.links.github,   Icon: Github,   label: 'GitHub',   external: true },
+                { href: `mailto:${personal.email}`, Icon: Mail,  label: 'Email',    external: false },
+              ].map(({ href, Icon, label, external }) => (
+                <Magnetic key={label} strength={0.6}>
+                  <a
+                    href={href}
+                    aria-label={label}
+                    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className="block text-muted-foreground hover:text-primary transition-colors duration-200"
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                </Magnetic>
+              ))}
+            </motion.div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-4">
-              <Button 
-                size="lg" 
-                className="w-full sm:w-auto bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-                onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Get in Touch
-              </Button>
-              <a href="/resume.pdf" download className="w-full sm:w-auto">
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="w-full border-2 border-cyan-600 text-cyan-600 hover:bg-gradient-to-r hover:from-cyan-600 hover:to-teal-600 hover:text-white hover:border-transparent hover:scale-105 transition-all duration-300"
+            {/* CTAs */}
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-3 pt-2">
+              <Magnetic>
+                <button
+                  onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors duration-300 shadow-lg shadow-primary/20"
+                >
+                  Get in Touch
+                </button>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="rounded-full border border-border/80 px-7 py-3 text-sm font-semibold text-foreground hover:border-primary/60 hover:text-primary transition-all duration-300 inline-block text-center"
                 >
                   Download Resume
-                </Button>
-              </a>
-            </div>
+                </a>
+              </Magnetic>
+            </motion.div>
+          </motion.div>
+
+          {/* Right — photo */}
+          <div className="flex justify-center order-1 md:order-2">
+            <Parallax offset={40}>
+              <motion.div
+                className="relative w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[22rem] lg:h-[22rem]"
+                initial={{ opacity: 0, scale: 0.85, rotate: -5 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 1, ease }}
+              >
+                {/* Orange glow ring behind photo */}
+                <div className="absolute inset-0 rounded-full animate-pulse-glow"
+                  style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.18) 0%, transparent 70%)' }}
+                />
+                {/* Border + photo */}
+                <div className="animate-glow relative w-full h-full rounded-full p-[3px]"
+                  style={{ background: 'linear-gradient(135deg, #f97316, #fbbf24, #f97316)' }}
+                >
+                  <div className="w-full h-full rounded-full overflow-hidden bg-[#0a0a0a]">
+                    <img
+                      src="./images/profile.jpg"
+                      alt={personal.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            </Parallax>
           </div>
 
-          {/* Right side - Photo */}
-          <div className="flex justify-center order-1 md:order-2">
-            <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-teal-500/30 to-emerald-500/30 rounded-full animate-pulse-glow" />
-              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-transparent bg-gradient-to-br from-cyan-500 via-teal-500 to-emerald-500 p-1 shadow-2xl shadow-cyan-500/50 animate-glow">
-                <div className="w-full h-full rounded-full overflow-hidden bg-background">
-                  <img 
-                    src="./images/profile.jpg" 
-                    alt={personal.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

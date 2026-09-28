@@ -58,39 +58,79 @@ export const portfolioData = {
     }
   ],
 
-  projects: [
+  // ── Featured projects (shown as large case studies with screenshots) ─────
+  featuredProjects: [
     {
-      name: "StockDaddy - Inventory Management System",
-      description: "Modular .NET 9 full-stack application architected using Clean Architecture principles for inventory and operations management. Frontend and backend are in the same repository.",
-      technologies: ["React", "ASP.NET Core", "PostgreSQL", "TypeScript", ".NET 9", "EF Core", "Clean Architecture", "xUnit", "Moq"],
-      link: "https://github.com/pixelpix13/StockDaddy",
+      number: "01",
+      name: "UH Tutoring Platform",
+      subtitle: "University of Houston · Enterprise Internal Tool",
+      description:
+        "A production multi-role tutoring platform serving 10,000+ students, tutors, and staff at UH. Built from scratch on ASP.NET Core, React, and PostgreSQL — replacing a legacy .NET Framework WebForms system.",
+      technologies: ["ASP.NET Core", "React", "TypeScript", "PostgreSQL", "EF Core", "Azure AD", "OAuth2/OIDC", "JWT"],
       highlights: [
-        "Architected modular backend using Clean Architecture for independent evolution of domain logic and infrastructure",
-        "Implemented multi-tenant inventory system with tenant isolation and role-based access",
-        "Built React + TypeScript admin UI integrated with backend REST APIs",
-        "Wrote comprehensive unit tests using xUnit and Moq to validate business logic and reduce regression risk"
-      ]
+        "Multi-role RBAC: Admin, Tutor, Student, Staff portals",
+        "Live tutoring queue with real-time session tracking",
+        "~40% reduction in page load times after legacy migration",
+        "~25% fewer auth-related production issues post-refactor",
+      ],
+      link: undefined as string | undefined,
+      images: [
+        "./images/uh/UH login.png",
+        "./images/uh/Uh tutoring login.png",
+        "./images/uh/Uh tutoring admin portal.png",
+        "./images/uh/Uh tutoring admin portal_2.png",
+        "./images/uh/Uh admin portal_2.png",
+        "./images/uh/uh tutoring tutor portal.png",
+        "./images/uh/uh tutoring student portal.png",
+      ],
     },
+    {
+      number: "02",
+      name: "StockDaddy",
+      subtitle: "Personal Project · Inventory Management System",
+      description:
+        "A modular, multi-tenant full-stack inventory and operations management system built with Clean Architecture principles. Supports role-based access, real-time analytics, and POS integration.",
+      technologies: [".NET 9", "ASP.NET Core", "React", "TypeScript", "PostgreSQL", "EF Core", "Clean Architecture", "xUnit", "Moq"],
+      highlights: [
+        "Multi-tenant isolation with per-tenant RBAC",
+        "Executive dashboard with real-time revenue & stock alerts",
+        "Clean Architecture — domain logic fully decoupled from infra",
+        "Comprehensive unit test suite with xUnit and Moq",
+      ],
+      link: "https://github.com/pixelpix13/StockDaddy",
+      images: [
+        "./images/Stockdaddy/Login page.png",
+        "./images/Stockdaddy/Admin dashboard.png",
+        "./images/Stockdaddy/Dark Mode.png",
+        "./images/Stockdaddy/settings.png",
+        "./images/Stockdaddy/Rbac.png",
+        "./images/Stockdaddy/Rbac finegraned.png",
+      ],
+    },
+  ],
+
+  // ── Supporting projects (shown as a smaller grid below) ─────────────────
+  projects: [
     {
       name: "Bulky MVC - Full-Stack .NET Web API",
       description: "Complete full-stack application with .NET backend and React frontend, demonstrating modern architecture patterns",
       technologies: ["React.js", "ASP.NET Core", "Entity Framework", "TypeScript", ".NET 9", "C#", "Axios"],
       link: "https://github.com/pixelpix13/Bulky_MVC",
       highlights: [
-        "Owned the architecture of a modular .NET 9 backend using ASP.NET Core, driving design decisions from requirements through testing",
-        "Built a React + TypeScript frontend integrated with backend services via Axios, ensuring consistent API consumption patterns and predictable client–server interactions",
-        "Developed a console-based diagnostic utility to trace API workflows and automate request validation, reducing manual debugging effort and improving developer productivity"
+        "Modular .NET 9 backend with ASP.NET Core",
+        "React + TypeScript frontend via Axios",
+        "Console diagnostic utility for API workflow tracing",
       ]
     },
     {
       name: "Plix - Netflix Clone",
       description: "Event-driven video streaming platform using AWS services for scalable video management and delivery",
-      technologies: ["React", "Lambda", "DynamoDB", "CloudFront", "S3", "API Gateway", "EventBridge", "Cognito", "Tailwind CSS", "AWS"],
+      technologies: ["React", "Lambda", "DynamoDB", "CloudFront", "S3", "API Gateway", "EventBridge", "Cognito"],
       link: "https://github.com/pixelpix13/Plix",
       highlights: [
-        "Engineered event-driven pipeline for asynchronous video transcoding and metadata generation",
-        "Implemented secure authentication with AWS Cognito and optimized delivery through CloudFront",
-        "Built responsive React frontend with Tailwind CSS for enhanced user interaction"
+        "Event-driven pipeline for async video transcoding",
+        "Secure auth with AWS Cognito + CloudFront delivery",
+        "Responsive React + Tailwind CSS frontend",
       ]
     }
   ],

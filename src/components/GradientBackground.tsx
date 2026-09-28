@@ -1,20 +1,22 @@
+/** Minimal dark background with a single warm radial glow.
+ *  Replaces the old blob-animation approach — award-site style. */
 export function GradientBackground() {
   return (
-    <div className="fixed inset-0 -z-20 overflow-hidden">
-      {/* Animated gradient orbs */}
-      <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
-      <div className="absolute top-0 -right-4 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
-      <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
-      
-      {/* Grid pattern overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.03]"
+    <div className="fixed inset-0 -z-20 bg-[#0a0a0a]">
+      {/* Soft warm radial at the very top */}
+      <div
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `
-            linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px),
-            linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)
-          `,
-          backgroundSize: '4rem 4rem',
+          background:
+            'radial-gradient(ellipse 90% 55% at 50% -5%, rgba(249,115,22,0.07) 0%, transparent 70%)',
+        }}
+      />
+      {/* Subtle bottom edge accent */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(90deg, transparent 0%, rgba(249,115,22,0.15) 50%, transparent 100%)',
         }}
       />
     </div>
