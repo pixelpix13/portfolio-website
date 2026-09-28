@@ -15,7 +15,8 @@ function HeadlineLine({
   className?: string;
 }) {
   return (
-    <span className="block overflow-hidden">
+    /* Extra bottom padding so descenders (g, y, p) aren't clipped by overflow-hidden */
+    <span className="block overflow-hidden pb-[0.18em] -mb-[0.18em]">
       <motion.span
         className={`block ${className}`}
         initial={{ y: '110%' }}
@@ -70,7 +71,7 @@ export function Hero() {
 
             {/* Headline */}
             <div>
-              <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tight">
+              <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.05] tracking-tight">
                 <HeadlineLine delay={0.25} className="text-foreground">
                   Software
                 </HeadlineLine>
